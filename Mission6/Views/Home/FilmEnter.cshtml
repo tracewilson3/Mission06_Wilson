@@ -1,18 +1,90 @@
-@model TModel
+@model Film
 
-@{
-    Layout = null;
-}
+<h1>New Film</h1>
 
-<!DOCTYPE html>
+<form method="post">
+    
+    <input type="hidden" asp-for="MovieId">
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+    <select asp-for="CategoryId" class="form-control">
+        <option value="">Select a Category</option>
+        @if (ViewBag.Categories != null) // Ensure categories exist
+        {
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId" selected="@(Model != null && c.CategoryId == Model.CategoryId)">
+                    @c.CategoryName
+                </option>
+            }
+        }
+    </select>
+
+
+    <br>
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Title:</label>
+        <input asp-for="Title" class="form-control"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Year" class="form-label">Year:</label>
+        <input asp-for="Year" type="number" class="form-control"/>
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Director" class="form-label">Director:</label>
+        <input asp-for="Director" class="form-control"/>
+        <span asp-validation-for="Director" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Rating" class="form-label">Rating:</label>
+        <select asp-for="Rating" class="form-control">
+            <option value="">Select Rating</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+            <option value="NR">Not Rated</option>
+        </select>
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+    
+
+    <div class="mb-3">
+        <label asp-for="Edited" class="form-label">Edit:</label>
+        <select asp-for="Edited" class="form-control">
+            <option value=0>Yes</option>
+            <option value=1>No</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CopiedToPlex" class="form-label">Copied to Plex:</label>
+        <select asp-for="CopiedToPlex" class="form-control">
+            <option value="0">Yes</option>
+            <option value="1">No</option>
+        </select>
+    </div>
+
+
+
+    <div class="mb-3">
+        <label asp-for="LentTo" class="form-label">Lent To:</label>
+        <input asp-for="LentTo" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label">Notes:</label>
+        <textarea asp-for="Notes" class="form-control" rows="3" maxlength="25"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Film</button>
+    <a asp-action=""></a>
+    
+    <div asp-validation-summary="All"></div>
+</form>
+
