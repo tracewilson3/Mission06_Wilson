@@ -1,8 +1,17 @@
+using Mission6.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// build service to connect with database
+
+builder.Services.AddDbContext<FilmEnterContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:FilmConnection"]);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
