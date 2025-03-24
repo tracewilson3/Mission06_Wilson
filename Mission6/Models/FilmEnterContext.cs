@@ -4,7 +4,7 @@ namespace Mission6.Models;
 
 public class FilmEnterContext : DbContext
 {
-    // context file is liason between the program and the database
+    // context file is liaison between the program and the database
     // constructor to set up options: 
     public FilmEnterContext(DbContextOptions<FilmEnterContext> options) : base(options)
     {

@@ -18,7 +18,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+
+        return View("Test", new string[] { "One", "Two", "Three" });
     }
     public IActionResult GetToKnow()
     {
@@ -104,4 +105,5 @@ public class HomeController : Controller
         
         return RedirectToAction("MovieList");
     }
+    
 }
