@@ -19,7 +19,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
 
-        return View("Test", new string[] { "One", "Two", "Three" });
+        return View();
     }
     public IActionResult GetToKnow()
     {
